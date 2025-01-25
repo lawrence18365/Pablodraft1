@@ -1,17 +1,26 @@
-
 <!DOCTYPE html>
 <html lang="en">
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta name="description" content="PAB'S Facility Services - Premium Landscaping & Design">
+    <meta name="keywords" content="PAB'S Facility Services, Landscaping, Design, Premium Services">
+    <meta name="author" content="PAB'S Facility Services">
     <title>PAB'S FACILITY SERVICES | Premium Landscaping & Design</title>
     
-    <!-- Premium Fonts -->
+    <!-- Preconnect for Optimized Font Loading -->
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-    <link href="https://fonts.googleapis.com/css2?family=Italiana&family=Sora:wght@300;400;500;600&family=Merriweather:wght@300;400;700;900&display=swap" rel="stylesheet">
+    
+    <!-- Primary Font for Headings: Bebas Neue -->
+    <link href="https://fonts.googleapis.com/css2?family=Bebas+Neue&display=swap" rel="stylesheet">
+    
+    <!-- Additional Fonts -->
+    <link href="https://fonts.googleapis.com/css2?family=Italiana&family=Sora:wght@300;400;500;600&family=Merriweather:wght@300;400;700;900&family=Abel&display=swap" rel="stylesheet">
+    <link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:wght@400;500;600;700&family=Montserrat:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+    
+    <!-- Font Awesome (Restored) -->
     <link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css" rel="stylesheet">
-<link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:wght@400;500;600;700&family=Montserrat:wght@300;400;500;600;700&display=swap" rel="stylesheet">
     
     <!-- Essential Libraries -->
     <script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.12.2/gsap.min.js"></script>
@@ -21,13 +30,13 @@
             /* Brand Colors */
             --primary-green: #1A2F1C;
             --secondary-green: #2C4A2F;
-            --accent-gold: #D4B484;
+            --brand-green: #28b336;
             --soft-cream: #F9F6F2;
             --pure-white: #FFFFFF;
             
             /* Typography */
-            --heading: 'Italiana', serif;
-            --body: 'Sora', sans-serif;
+            --heading: 'Bebas Neue', serif;
+            --body: 'Abel', sans-serif;
             
             /* Transitions */
             --smooth: cubic-bezier(0.4, 0, 0.2, 1);
@@ -53,6 +62,11 @@
             width: 100%;
             padding: 0 1.25rem;
             margin: 0 auto;
+        }
+        .abel-regular {
+            font-family: "Abel", serif;
+             font-weight: 400;
+              font-style: normal;
         }
 
         @media (min-width: 640px) {
@@ -119,7 +133,7 @@
         }
 
         .contact-info a:hover {
-            color: var(--accent-gold);
+            color: var(--brand-green);
         }
 
         .main-header {
@@ -180,7 +194,7 @@
             left: 0;
             width: 100%;
             height: 2px;
-            background: var(--accent-gold);
+            background: var(--brand-green);
             transform: scaleX(0);
             transform-origin: right;
             transition: transform 0.3s var(--smooth);
@@ -202,6 +216,8 @@
             transition: all 0.3s var(--smooth);
             position: relative;
             overflow: hidden;
+            font-family: "Bebas Neue", serif;  /* Direct font specification */
+
         }
 
         .nav-cta::before {
@@ -211,7 +227,7 @@
             left: 0;
             width: 100%;
             height: 100%;
-            background: var(--accent-gold);
+            background: #28b336;
             transform: translateX(-100%) skew(-15deg);
             transition: transform 0.5s var(--smooth);
             z-index: 0;
@@ -297,7 +313,7 @@
         }
 
         .mobile-nav-link:hover {
-            color: var(--accent-gold);
+            color: var(--brand-green);
         }
 
         /* Hero Section */
@@ -334,52 +350,64 @@
 }
 
 .hero-badge {
-    display: inline-flex;
+    display: flex;
+    margin: 0 auto;
     align-items: center;
-    gap: 0.75rem;
-    /* Increased opacity and contrast */
-    background: rgba(212, 180, 132, 0.25);
-    border: 2px solid rgba(212, 180, 132, 0.5);
-    color: var(--accent-gold);
-    padding: 0.75rem 1.25rem;
-    border-radius: 100px;
-    font-size: 0.875rem;
-    letter-spacing: 1px;
+    gap: 1rem;
+    background: rgba(0, 0, 0, 0.85); /* Opaque black background to match the logo */
+    border: 2px solid #28b335; /* Bold green border for branding consistency */
+    color: #28b335; /* Matching green text color */
+    padding: 1rem 1.5rem;
+    border-radius: 50px;
+    font-size: 1.45rem; /* Slightly larger for prominence */
+    letter-spacing: 1.25px; /* Refined letter-spacing */
     text-transform: uppercase;
-    margin-bottom: 2rem;
-    font-family: var(--heading);
-    font-weight: 900; /* Extra bold for better visibility */
-    /* Strong text shadow for badge */
-    text-shadow: 0 2px 4px rgba(0, 0, 0, 0.3);
+    margin-bottom: 2.5rem;
+   font-family: "abel", serif;
+    font-weight: 900;
+    text-shadow: 0 3px 6px rgba(40, 179, 53, 0.5); /* Subtle green shadow for branding depth */
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.6), 0 2px 4px rgba(40, 179, 53, 0.5); /* Layered shadows for premium look */
+    justify-content: center;
+    transition: transform 0.3s ease, box-shadow 0.3s ease; /* Smooth hover effect */
+}
+
+/* Hover State for Interactivity */
+.hero-badge:hover {
+    transform: translateY(-3px); /* Lift effect on hover */
+    box-shadow: 0 6px 12px rgba(0, 0, 0, 0.8), 0 2px 4px rgba(40, 179, 53, 0.7); /* Enhanced shadow on hover */
+    background: linear-gradient(90deg, #28b335, #000000); /* Green-to-black gradient for hover */
+    cursor: pointer;
+}
+.bebas-neue-regular {
+    font-family: "Bebas Neue", serif;
+    font-weight: 400;
+    font-style: normal;
 }
 
 .hero-title {
-    font-family: var(--heading);
+    font-family: "Bebas Neue", serif;  /* Direct font specification */
     font-size: clamp(2.5rem, 5vw, 4rem);
     line-height: 1.1;
     margin-bottom: 1.5rem;
-    font-weight: 900; /* Black weight for maximum impact */
+    font-weight: 400; /* Bebas Neue typically has a single weight */
     /* Enhanced text shadow for title */
     text-shadow: 
         0 2px 4px rgba(0, 0, 0, 0.3),
         0 4px 12px rgba(0, 0, 0, 0.15);
     color: var(--pure-white);
     letter-spacing: -0.02em; /* Slight tightening for better readability */
+    text-align: center;
 }
 
 .hero-description {
-    font-family: "Times New Roman", Times, serif;
-    font-size: 1.25rem;
+    font-family: "abel", serif;
+    font-size: 1.35rem;
     line-height: 1.8;
     margin-bottom: 2.5rem;
     color: var(--pure-white);
-    text-shadow: 
-        0 1px 3px rgba(0, 0, 0, 0.3),
-        0 2px 6px rgba(0, 0, 0, 0.2);  /* Double text shadow for better outdoor visibility */
     font-weight: 300;  /* Times New Roman bold for better visibility */
-    letter-spacing: 0.02em;  /* Slightly increased letter spacing */
+    text-align: center;
 }
-
 /* Mobile optimization for outdoor viewing */
 @media (max-width: 768px) {
     .hero-description {
@@ -394,8 +422,9 @@
 /* Mobile optimization for outdoor viewing */
 @media (max-width: 768px) {
     .hero-badge {
-        background: rgba(212, 180, 132, 0.3); /* Even more contrast on mobile */
+        
         font-weight: 900;
+         font-size: 1.25rem; /* Slightly larger for prominence */
     }
     
     .hero-title {
@@ -423,7 +452,8 @@
         }
 
         .form-title {
-            font-family: var(--heading);
+                font-family: "Bebas Neue", serif;  /* Direct font specification */
+
             font-size: 2rem;
             text-align: center;
             margin-bottom: 2rem;
@@ -455,7 +485,7 @@
 
         .form-input:focus {
             outline: none;
-            border-color: var(--accent-gold);
+            border-color: var(--brand-green);
             background: var(--pure-white);
         }
 
@@ -491,7 +521,7 @@
             left: 0;
             width: 100%;
             height: 100%;
-            background: var(--accent-gold);
+            background: var(--brand-green);
             transform: translateX(-100%) skew(-15deg);
             transition: transform 0.5s var(--smooth);
             z-index: 0;
@@ -599,7 +629,7 @@
         .cursor {
             width: 20px;
             height: 20px;
-            border: 2px solid var(--accent-gold);
+            border: 2px solid var(--brand-green);
             border-radius: 50%;
             position: fixed;
             pointer-events: none;
@@ -704,7 +734,6 @@
         <div class="container hero-content">
             <div class="hero-text">
                 <div class="hero-badge">
-                    <i class="fas fa-star"></i>
                     Sydney's Premier Landscaping Service
                 </div>
                 <h1 class="hero-title">Transforming Spaces Into Natural Sanctuaries</h1>
@@ -812,7 +841,7 @@
 
     .services-subtitle {
         font-family: 'Cormorant Garamond', serif;
-        color: var(--accent-gold);
+        color: var(--brand-green);
         font-size: 1.25rem;
         letter-spacing: 2px;
         text-transform: uppercase;
@@ -844,6 +873,8 @@
         overflow: hidden;
         box-shadow: 0 4px 6px -1px rgba(0, 0, 0, 0.1),
                     0 2px 4px -1px rgba(0, 0, 0, 0.06);
+        display: flex;
+        flex-direction: column;
     }
 
     .service-card:hover {
@@ -859,7 +890,7 @@
         left: 0;
         width: 100%;
         height: 4px;
-        background: var(--accent-gold);
+        background: var(--brand-green);
         transform: scaleX(0);
         transform-origin: right;
         transition: transform 0.3s var(--smooth);
@@ -884,12 +915,6 @@
         transition: all 0.3s var(--smooth);
     }
 
-    .service-card:hover .service-icon {
-        background: var(--primary-green);
-        color: var(--pure-white);
-        transform: rotateY(180deg);
-    }
-
     .service-title {
         font-family: var(--heading);
         color: var(--primary-green);
@@ -903,21 +928,23 @@
         color: var(--secondary-green);
         line-height: 1.7;
         opacity: 0.9;
+        flex-grow: 1;
+        margin-bottom: 1.5rem;
     }
 
     .learn-more {
         display: inline-flex;
         align-items: center;
         gap: 0.5rem;
-        margin-top: 1.5rem;
         color: var(--primary-green);
         font-weight: 500;
         text-decoration: none;
         transition: all 0.3s var(--smooth);
+        align-self: flex-start;
     }
 
     .learn-more:hover {
-        color: var(--accent-gold);
+        color: var(--brand-green);
         gap: 0.75rem;
     }
 </style>
@@ -964,20 +991,20 @@
 
             <!-- Lawn Mowing -->
             <div class="service-card">
-    <div class="service-icon">
+                 <div class="service-icon">
         <img src="https://www.svgrepo.com/show/208260/lawn-mower.svg" 
              alt="Lawn Mowing Icon" 
              width="24" 
              height="24">
     </div>
-    <h3 class="service-title">Lawn Mowing</h3>
-    <p class="service-description">
-        Regular lawn maintenance service delivering that perfect cut every time. We ensure your lawn stays healthy and vibrant throughout the seasons.
-    </p>
-    <a href="#contact" class="learn-more">
-        Learn More <i class="fas fa-arrow-right"></i>
-    </a>
-</div>
+                <h3 class="service-title">Lawn Mowing</h3>
+                <p class="service-description">
+                    Regular lawn maintenance service delivering that perfect cut every time. We ensure your lawn stays healthy and vibrant throughout the seasons.
+                </p>
+                <a href="#contact" class="learn-more">
+                    Learn More <i class="fas fa-arrow-right"></i>
+                </a>
+            </div>
 
             <!-- Weeding -->
             <div class="service-card">
@@ -1023,7 +1050,6 @@
         </div>
     </div>
 </section>
-
     <script>
         // GSAP Initialization
         gsap.registerPlugin(ScrollTrigger);
