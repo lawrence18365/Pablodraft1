@@ -206,7 +206,7 @@
         /* ===== HERO SECTION ===== */
 /* ===== HERO SECTION ===== */
 .hero-section {
-        position: relative;
+    position: relative;
     height: 120vh;
     background: linear-gradient(rgba(255, 255, 255, 0.45), rgba(255, 255, 255, 0.45)), url(https://i.postimg.cc/XvvvDzZV/i-Stock-1166961064-min.webp);
     background-size: cover;
@@ -217,52 +217,56 @@
 }
 
 .content-wrapper {
-    max-width: 800px;
-    margin: 0 auto;
+    width: 85%;
+    max-width: none;
+    margin-left: 15%;
     padding: 60px 40px;
     display: flex;
     flex-direction: column;
-    justify-content: center;
-    margin-top: 100px;
-    line-height: 56px;
+    justify-content: flex-start; /* Changed from center */
+    margin-top: 40px; /* Reduced top margin */
+    line-height: 2.5;
 }
+
 .service-title {
-    font-size: 1.25rem;
-    font-weight: 200;
+    font-size: 1.6rem;
+    font-weight: 500;
     line-height: 1.2;
-    margin-bottom: 1rem;
+    margin-bottom: 0.5rem;
     text-align: left;
-    max-width: 700px;
 }
 
 .service-subtitle {
-    font-size: 1.25rem;
-    font-weight: 200;
-    margin-bottom: 1.5rem;
+    font-size: 1.6rem;
+    font-weight: 500;
+    margin-bottom: 2rem;
     text-align: left;
 }
 
-
 .service-description {
-    font-size: 1rem;
+    font-size: 1.6rem;
     line-height: 1.5;
-    max-width: 800px;
-    margin: 1rem 0;
+    margin: 0.8rem 0;
     text-align: left;
+    font-weight:600;
 }
 
 .cta-main {
     width: auto;
-    padding: 15px 30px;
-    margin: 2rem auto; /* Keep CTA centered */
+    padding: 15px 40px;
+    margin: 3rem 0; /* Changed to align left with text */
     text-align: center;
+    align-self: center;
+    position: relative;
+    left: 50%;
+    transform: translateX(-50%);
 }
 
 .brand-mascot {
     position: absolute;
-    left: 15%;
-    bottom: 20%;
-    width: 200px;
+    left: 0%;
+    bottom: 0%;
+    width: 220px;
     z-index: 2;
 }
 /* ===== CTA BUTTON ===== */
@@ -284,6 +288,7 @@
     position: relative;
     overflow: hidden;
     font-family: "Red Hat Display", serif;
+    margin-left: -50px;
 }
 
 .cta-main::before {
@@ -291,16 +296,7 @@
     position: absolute;
     top: 0;
 }
-/* ===== MASCOT LOGO ===== */
-.brand-mascot {
-    width: 200px;
-    position: absolute;
-    left: 5%;
-    bottom: 15%;
-    z-index: 100;
-    transition: all 0.3s ease;
-}
-        /* ===== CTA BUTTON ===== */
+
 
 
         .cta-main:hover::before {
@@ -525,11 +521,16 @@
             
 
             <p class="service-description">
-                Looking for professional, reliable garden and outdoor maintenance? Our team delivers high-quality services for Sydney's residential gardens, strata and commercial properties.
+                Looking for professional, reliable garden and outdoor maintenance?
             </p>
 
             <p class="service-description">
-                We offer a free site inspection before we quote, to ensure our service meets your expectations!
+                Our team has more than 5 years experience delivering high-quality services
+for Sydney’s residential gardens, strata and commercial properties
+            </p>
+            <p class="service-description">
+                We offer a free site inspection before we quote, to ensure our service meets
+your expectations!
             </p>
 
             <button class="cta-main">
