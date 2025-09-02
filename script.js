@@ -1,4 +1,101 @@
+// Load header template
+function loadHeader(isSuburbPage = false) {
+  const headerFile = isSuburbPage ? '../header-suburb.html' : './header-main.html';
+  fetch(headerFile)
+    .then(response => response.text())
+    .then(html => {
+      const headerPlaceholder = document.getElementById('header-placeholder');
+      if (headerPlaceholder) {
+        headerPlaceholder.innerHTML = html;
+        // Initialize mobile nav after header is loaded
+        initializeMobileNav();
+        initializeDropdown();
+      }
+    })
+    .catch(error => console.error('Error loading header:', error));
+}
+
+function initializeMobileNav() {
+  const mobileNavToggle = document.querySelector('.mobile-nav-toggle');
+  const navLinks = document.querySelector('.nav-links');
+
+  if (mobileNavToggle && navLinks) {
+    mobileNavToggle.setAttribute('aria-controls', 'primary-navigation');
+    mobileNavToggle.setAttribute('aria-expanded', 'false');
+
+    mobileNavToggle.addEventListener('click', () => {
+      const isOpen = navLinks.classList.toggle('active');
+      mobileNavToggle.setAttribute('aria-expanded', String(isOpen));
+    });
+
+    // Close mobile menu when a link is clicked
+    navLinks.querySelectorAll('a').forEach(item => {
+      item.addEventListener('click', () => {
+        if (window.innerWidth <= 768) {
+          navLinks.classList.remove('active');
+          mobileNavToggle.setAttribute('aria-expanded', 'false');
+        }
+      });
+    });
+
+    // Close when clicking outside
+    document.addEventListener('click', (event) => {
+      const isClickInsideNav = navLinks.contains(event.target);
+      const isClickOnToggle = mobileNavToggle.contains(event.target);
+      if (!isClickInsideNav && !isClickOnToggle && navLinks.classList.contains('active')) {
+        navLinks.classList.remove('active');
+        mobileNavToggle.setAttribute('aria-expanded', 'false');
+      }
+    });
+  }
+}
+
+function initializeDropdown() {
+  // Suburbs dropdown (desktop click + mobile inline)
+  const dropdown = document.querySelector('.nav-links .dropdown');
+  if (dropdown) {
+    const trigger = dropdown.querySelector('a');
+    const menu = dropdown.querySelector('.dropdown-menu');
+    function closeAll() { dropdown.classList.remove('open'); trigger.setAttribute('aria-expanded', 'false'); }
+    trigger.setAttribute('aria-haspopup', 'true');
+    trigger.setAttribute('aria-expanded', 'false');
+    trigger.addEventListener('click', (e) => {
+      // On mobile, this simply expands inline; on desktop it's a dropdown
+      e.preventDefault();
+      const isOpen = dropdown.classList.toggle('open');
+      trigger.setAttribute('aria-expanded', String(isOpen));
+    });
+    document.addEventListener('click', (e) => {
+      if (!dropdown.contains(e.target)) closeAll();
+    });
+    // Basic keyboard support
+    trigger.addEventListener('keydown', (e) => {
+      if (e.key === 'Escape') closeAll();
+      if ((e.key === 'ArrowDown' || e.key === 'Enter') && !dropdown.classList.contains('open')) {
+        e.preventDefault();
+        dropdown.classList.add('open');
+        trigger.setAttribute('aria-expanded', 'true');
+        const first = menu?.querySelector('a');
+        first && first.focus();
+      }
+    });
+  }
+}
+
 document.addEventListener('DOMContentLoaded', () => {
+  // Load header template first (for pages using template system)
+  const isSuburbPage = document.body.hasAttribute('data-page') && document.body.getAttribute('data-page') === 'suburb';
+  const hasHeaderPlaceholder = document.getElementById('header-placeholder');
+  
+  if (hasHeaderPlaceholder) {
+    // Page uses header template system
+    loadHeader(isSuburbPage);
+  } else {
+    // Page has hardcoded header (like index.html), initialize dropdown directly
+    initializeMobileNav();
+    initializeDropdown();
+  }
+  
   // Controlled, not-too-slow initial reveal
   const HERO_URL = 'https://i.postimg.cc/kXjd4WYB/Pro-Clean-One-Backgroun.jpg';
   const MAX_WAIT_MS = 1500;   // never wait longer than this before reveal
@@ -35,68 +132,6 @@ document.addEventListener('DOMContentLoaded', () => {
   img.src = HERO_URL;
   // Fallback: reveal after MAX_WAIT_MS regardless
   setTimeout(maybeReveal, MAX_WAIT_MS);
-  const mobileNavToggle = document.querySelector('.mobile-nav-toggle');
-  const navLinks = document.querySelector('.nav-links');
-
-  if (mobileNavToggle && navLinks) {
-    mobileNavToggle.setAttribute('aria-controls', 'primary-navigation');
-    mobileNavToggle.setAttribute('aria-expanded', 'false');
-
-    mobileNavToggle.addEventListener('click', () => {
-      const isOpen = navLinks.classList.toggle('active');
-      mobileNavToggle.setAttribute('aria-expanded', String(isOpen));
-    });
-
-    // Close mobile menu when a link is clicked
-    navLinks.querySelectorAll('a').forEach(item => {
-      item.addEventListener('click', () => {
-        if (window.innerWidth <= 768) {
-          navLinks.classList.remove('active');
-          mobileNavToggle.setAttribute('aria-expanded', 'false');
-        }
-      });
-    });
-
-    // Close when clicking outside
-    document.addEventListener('click', (event) => {
-      const isClickInsideNav = navLinks.contains(event.target);
-      const isClickOnToggle = mobileNavToggle.contains(event.target);
-      if (!isClickInsideNav && !isClickOnToggle && navLinks.classList.contains('active')) {
-        navLinks.classList.remove('active');
-        mobileNavToggle.setAttribute('aria-expanded', 'false');
-      }
-    });
-  }
-
-  // Suburbs dropdown (desktop click + mobile inline)
-  const dropdown = document.querySelector('.nav-links .dropdown');
-  if (dropdown) {
-    const trigger = dropdown.querySelector('a');
-    const menu = dropdown.querySelector('.dropdown-menu');
-    function closeAll() { dropdown.classList.remove('open'); trigger.setAttribute('aria-expanded', 'false'); }
-    trigger.setAttribute('aria-haspopup', 'true');
-    trigger.setAttribute('aria-expanded', 'false');
-    trigger.addEventListener('click', (e) => {
-      // On mobile, this simply expands inline; on desktop it's a dropdown
-      e.preventDefault();
-      const isOpen = dropdown.classList.toggle('open');
-      trigger.setAttribute('aria-expanded', String(isOpen));
-    });
-    document.addEventListener('click', (e) => {
-      if (!dropdown.contains(e.target)) closeAll();
-    });
-    // Basic keyboard support
-    trigger.addEventListener('keydown', (e) => {
-      if (e.key === 'Escape') closeAll();
-      if ((e.key === 'ArrowDown' || e.key === 'Enter') && !dropdown.classList.contains('open')) {
-        e.preventDefault();
-        dropdown.classList.add('open');
-        trigger.setAttribute('aria-expanded', 'true');
-        const first = menu?.querySelector('a');
-        first && first.focus();
-      }
-    });
-  }
 
   // Smooth scrolling for in-page anchors
   document.querySelectorAll('a[href^="#"]').forEach(anchor => {

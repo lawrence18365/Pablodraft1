@@ -35,7 +35,7 @@ a:focus-visible, button:focus-visible {
 .container {
   max-width: 1200px;
   margin: 0 auto;
-  padding: 0 20px;
+  padding: 0 40px;
 }
 
 /* Skip link */
@@ -61,7 +61,7 @@ a:focus-visible, button:focus-visible {
   width: 100%;
   top: 0;
   z-index: 1000;
-  padding: 10px 0;
+  padding: 30px 0;
 }
 
 .nav-container {
@@ -70,10 +70,14 @@ a:focus-visible, button:focus-visible {
   align-items: center;
 }
 
+.logo {
+  padding: 0 8px;
+}
+
 .logo a {
   color: var(--text-color);
   text-decoration: none;
-  font-size: 1.5rem;
+  font-size: 1.4rem;
   font-weight: 100;
   font-family: 'Lora', serif;
 }
@@ -83,7 +87,7 @@ a:focus-visible, button:focus-visible {
   list-style: none;
 }
 
-.nav-links li { margin-left: 20px; }
+.nav-links li { margin-left: 18px; }
 
 .nav-links a {
   color: var(--text-color);
@@ -91,9 +95,39 @@ a:focus-visible, button:focus-visible {
   font-weight: 100;
   transition: color 0.3s ease;
   font-family: 'Lora', serif;
+  font-size: 1rem;
 }
 
 .nav-links a:hover { color: var(--accent-color); }
+
+/* Readable sizing that prevents wrapping */
+@media (max-width: 1600px) {
+  .logo { padding: 0 6px; }
+  .logo a { font-size: 1.3rem; }
+  .nav-links li { margin-left: 16px; }
+  .nav-links a { font-size: 0.95rem; }
+}
+
+@media (max-width: 1400px) {
+  .logo { padding: 0 4px; }
+  .logo a { font-size: 1.2rem; }
+  .nav-links li { margin-left: 14px; }
+  .nav-links a { font-size: 0.9rem; }
+}
+
+@media (max-width: 1200px) {
+  .logo { padding: 0 2px; }
+  .logo a { font-size: 1.1rem; }
+  .nav-links li { margin-left: 12px; }
+  .nav-links a { font-size: 0.85rem; }
+}
+
+@media (max-width: 1024px) {
+  .nav-bar { padding: 25px 0; }
+  .logo a { font-size: 1rem; }
+  .nav-links li { margin-left: 10px; }
+  .nav-links a { font-size: 0.8rem; }
+}
 
 /* Suburbs dropdown */
 .nav-links .dropdown { position: relative; }
@@ -157,6 +191,11 @@ a:focus-visible, button:focus-visible {
   background-size: cover;
   background-position: center;
   position: relative;
+}
+
+/* Suburb pages use alternate hero image */
+body[data-page="suburb"] .hero {
+  background-image: url('./alternate_hero_image.webp');
 }
 
 .hero::before {
@@ -226,6 +265,12 @@ a:focus-visible, button:focus-visible {
   gap: 20px;
   max-width: 1200px;
   margin: 0 auto;
+}
+
+/* Suburb variant: make tiles larger and side-by-side (2 cols) */
+.services--suburb-grid .services-grid {
+  grid-template-columns: repeat(2, 1fr);
+  gap: 24px;
 }
 
 .service-item {
@@ -422,8 +467,8 @@ footer { background-color: rgba(1, 16, 46, 0.9); padding: 40px 0 20px; }
 }
 
 @media (max-width: 768px) {
-  .nav-container { flex-wrap: wrap; justify-content: center; padding: 10px; }
-  .logo { order: 1; width: 100%; text-align: center; margin-bottom: 10px; }
+  .nav-container { flex-wrap: wrap; justify-content: center; padding: 25px; }
+  .logo { order: 1; width: 100%; text-align: center; margin-bottom: 15px; padding: 0 20px; }
   .mobile-nav-toggle { display: block; order: 2; position: absolute; right: 10px; top: 10px; }
   .nav-links { display: none; width: 100%; order: 4; }
   .nav-links.active {
@@ -437,7 +482,7 @@ footer { background-color: rgba(1, 16, 46, 0.9); padding: 40px 0 20px; }
   /* Mobile dropdown expands inline */
   .dropdown-menu { position: static; border: 0; background: transparent; padding: 0; }
   .dropdown-menu a { padding: 8px 0; }
-  .nav-links li { margin: 10px 0; }
+  .nav-links li { margin: 15px 0; }
   .contact-info { display: none; }
 
   .hero h1 { font-size: 2rem; }
@@ -456,6 +501,26 @@ footer { background-color: rgba(1, 16, 46, 0.9); padding: 40px 0 20px; }
   .about-text { font-size: 1rem; }
 
   .footer-content { flex-direction: column; text-align: center; }
+}
+
+/* Promote mobile nav to earlier breakpoint to prevent two-line header */
+@media (max-width: 1024px) {
+  .nav-container { flex-wrap: wrap; justify-content: center; padding: 25px; }
+  .logo { order: 1; width: 100%; text-align: center; margin-bottom: 15px; padding: 0 20px; }
+  .mobile-nav-toggle { display: block; order: 2; position: absolute; right: 10px; top: 10px; }
+  .nav-links { display: none; width: 100%; order: 4; }
+  .nav-links.active {
+    display: flex;
+    flex-direction: column;
+    background-color: rgba(1, 16, 46, 0.95);
+    position: absolute;
+    top: 100%; left: 0;
+    padding: 20px;
+  }
+  .dropdown-menu { position: static; border: 0; background: transparent; padding: 0; }
+  .dropdown-menu a { padding: 8px 0; }
+  .nav-links li { margin: 15px 0; }
+  .contact-info { display: none; }
 }
 
 /* Long-form prose sections (no boxes) */
@@ -487,4 +552,79 @@ footer { background-color: rgba(1, 16, 46, 0.9); padding: 40px 0 20px; }
 @media (max-width: 768px) {
   .info-content { flex-direction: column; }
   .info-image-container { height: 260px; }
+}
+
+/* Suburb services panel */
+.suburb-services-panel { padding: 32px 0 12px; background: rgba(255,255,255,0.04); }
+.suburb-services-panel .panel-title {
+  text-align: center;
+  font-family: 'Lora', serif;
+  font-weight: 100;
+  font-size: 1.6rem;
+  margin: 0 0 16px;
+}
+.panel-grid {
+  display: grid;
+  grid-template-columns: repeat(4, 1fr);
+  gap: 12px;
+}
+.panel-item {
+  display: block;
+  text-decoration: none;
+  background: rgba(255,255,255,0.1);
+  border: 1px solid rgba(255,255,255,0.6);
+  color: #fff;
+  padding: 14px 16px;
+  border-radius: 8px;
+  text-align: center;
+  font-family: 'Lora', serif;
+  font-weight: 100;
+  transition: transform 0.15s ease, background 0.2s ease, border-color 0.2s ease;
+}
+.panel-item:hover { transform: translateY(-2px); background: rgba(255,255,255,0.14); border-color: #fff; }
+
+@media (max-width: 1024px) {
+  .panel-grid { grid-template-columns: repeat(2, 1fr); }
+}
+@media (max-width: 640px) {
+  .panel-grid { grid-template-columns: 1fr; }
+}
+
+/* Two-column services grid */
+.services-grid-two-column {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 40px;
+  max-width: 1200px;
+  margin: 0 auto;
+}
+
+.services-grid-two-column .service-section {
+  background-color: rgba(255, 255, 255, 0.1);
+  padding: 30px;
+  border-radius: 10px;
+  border: 1px solid white;
+}
+
+.services-grid-two-column .service-section h2 {
+  color: var(--text-color);
+  font-family: 'Lora', serif;
+  font-weight: 700;
+  font-size: 1.5rem;
+  margin-bottom: 15px;
+  text-align: left;
+}
+
+.services-grid-two-column .service-section p {
+  font-size: 1rem;
+  line-height: 1.6;
+  font-weight: 100;
+  text-align: left;
+}
+
+@media (max-width: 768px) {
+  .services-grid-two-column {
+    grid-template-columns: 1fr;
+    gap: 20px;
+  }
 }
